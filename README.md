@@ -1,5 +1,11 @@
 # ChauffeurUSGroupProjectv3
 
+Ignored files:
+node_modules, dist (generates the webpack bundle.js)
+
+
+
+
 **Homepage:**
 ![untitled](https://user-images.githubusercontent.com/12276056/32831841-98289642-c9c7-11e7-89d2-c1771e8d9588.png)
 
