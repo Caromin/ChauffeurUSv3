@@ -1,3 +1,4 @@
 export default {
-    "extends": "airbnb",
+  extends: "airbnb",
+  plugin: "react/recommended"
 };
