@@ -3,11 +3,11 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: "development",
   entry: "./src/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "bundle.js"
+    filename: "bundle.js",
+    publicPath: "/"
   },
   module: {
     rules: [
@@ -25,6 +25,10 @@ module.exports = {
         use: ["file-loader"]
       }
     ]
+  },
+  // // Use to avoid errors in dev server for react-router-dom
+  devServer: {
+    historyApiFallback: true
   },
   plugins: [
     new CleanWebpackPlugin("./dist/*.js"),
