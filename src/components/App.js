@@ -5,6 +5,9 @@ import Nav from "./Nav/Nav";
 import Footer from "./Footer/Footer";
 import Homepage from "./Homepage/Homepage";
 import Userpage from "./Userpage/Userpage";
+import Error from "./Error/Error";
+import Login from "./Forms/LoginForm/LoginForm";
+import Signup from "./Forms/SignupForm/SignupForm";
 
 class App extends Component {
   constructor() {
@@ -14,17 +17,20 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Nav />
         <Router>
-          <Switch>
-            <Route exact path="/" component={Homepage} />
-            {/* <Route path="/login" component={Login} />
-            <Route path="/logout" component={Login} />
-          <Route path="/signup" component={Signup} /> */}
-            <Route path="/user" component={Userpage} />
-          </Switch>
+          <div>
+            <Nav />
+            <Switch>
+              <Route exact path="/" component={Homepage} />
+              <Route path="/login" component={Login} />
+              <Route path="/logout" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/user" component={Userpage} />
+              <Route component={Error} />
+            </Switch>
+            <Footer />
+          </div>
         </Router>
-        <Footer />
       </div>
     );
   }

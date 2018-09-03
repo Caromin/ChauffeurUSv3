@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
 import "./styles.scss";
 
@@ -14,13 +14,27 @@ class Nav extends Component {
           }
         >
           <a className={"navtitle navbar-brand marginLeftRight"}>ChauffeurUS</a>
-          <div className={"d-flex justify-content-end width100p"}>
-            <ul className={"navbar-nav flex-row"}>
+          <div className={"d-flex justify-content-end width80p"}>
+            <ul className={"navbar-nav flex-row "}>
               <li className={"nav-item marginLeftRight"}>
-                <Link to="/user">Signin</Link>
+                <NavLink
+                  className={
+                    "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
+                  }
+                  to="/signup"
+                >
+                  Signin
+                </NavLink>
               </li>
               <li className={"nav-item marginLeftRight"}>
-                <Link to="/">Register</Link>
+                <NavLink
+                  className={
+                    "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
+                  }
+                  to="/login"
+                >
+                  Register
+                </NavLink>
               </li>
             </ul>
           </div>

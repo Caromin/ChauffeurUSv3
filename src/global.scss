@@ -1,14 +1,40 @@
 $whiteColor: #fff;
 $defaultBold: 700;
 
+body {
+  padding-top: 65px;
+}
+
 .marginTopBottom {
   margin: 20px 0;
 }
 
 .marginLeftRight {
-  margin: 0 20px;
+  margin: 0 10px;
 }
 
 .noPadding {
   padding: 0;
+}
+
+.fullPage {
+  width: 100vw;
+  height: 100vh;
+}
+
+.noUnderline:hover {
+  text-decoration: none;
+}
+
+.width80p {
+  width: 80%;
+}
+
+.activeButton {
+  min-width: 75px;
+  text-align: center;
+}
+
+.activeButton:active {
+  background-color: black;
 }

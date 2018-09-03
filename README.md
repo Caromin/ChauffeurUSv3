@@ -3,11 +3,8 @@
 Ignored files:
 node_modules, dist (generates the webpack bundle.js)
 
-
-
-
 **Homepage:**
-![untitled](https://user-images.githubusercontent.com/12276056/32831841-98289642-c9c7-11e7-89d2-c1771e8d9588.png)
+![untitled](https://user-images.githubusercontent.com/12276056/44954791-49109e80-ae76-11e8-9e44-7ff6c5f9b557.png)
 
 **SignIn:**
 ![untitled](https://user-images.githubusercontent.com/12276056/32955096-f6aff130-cb82-11e7-966b-f7e47bb7d39e.png)
