@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container text-muted">
         <span>
           Status: In Development as a show for techincal expertise. Last Update:
-          9/2/18
+          9/4/18
         </span>
         <br />
         <span>

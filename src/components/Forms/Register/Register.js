@@ -3,7 +3,7 @@ import api from "../../../helperFunctions/frontendValidation";
 
 import "./styles.scss";
 
-class Signup extends Component {
+class Register extends Component {
   constructor() {
     super();
     this.state = {
@@ -27,8 +27,8 @@ class Signup extends Component {
   }
 
   handleSubmit(e) {
-    $(".redBorder").removeClass("redBorder animated bounceIn");
-    $(".hideDisplay").css("display", "none");
+    $(".redSmallText").css("display", "none");
+    $(".redBorder ").removeClass("redBorder animated bounceIn ");
     e.preventDefault();
     let data = {
       firstName: this.state.firstName,
@@ -38,12 +38,25 @@ class Signup extends Component {
       username: this.state.username
     };
 
-    let emptyInputs = api.signupValidation(data);
+    let emailValidation = data.email.match(/.+@.+\.com$/);
 
-    $.each(emptyInputs, function(index, result) {
-      $(`#${result}`).addClass("redBorder animated bounceIn");
-      $(`#${result}1`).css("display", "inline");
-    });
+    if (emailValidation !== null) {
+      let emptyInputs = api.signupValidation(data);
+
+      $.each(emptyInputs, function(index, result) {
+        $(`#${result}`).addClass("redBorder animated bounceIn");
+        $(`#${result}1`)
+          .css("display", "inline")
+          .text("Input is required");
+        // $(".redSmallText").css("display", "inline");
+      });
+    } else {
+      console.log("there was a problem with the email");
+      $(`#email`).addClass("redBorder animated bounceIn");
+      $(`#email1`)
+        .css("display", "inline")
+        .text("There was a probem with the email");
+    }
   }
 
   render() {
@@ -64,14 +77,13 @@ class Signup extends Component {
             >
               <label htmlFor={"firstName"}>
                 First Name:
-                <small id={"firstName1"} class={"redSmallText hideDisplay"}>
-                  Input Missing
-                </small>
+                <small id={"firstName1"} className={"redSmallText"} />
               </label>
               <input
                 id={"firstName"}
                 name={"firstName"}
                 type={"text"}
+                placeholder={"Christian"}
                 value={this.state.firstName}
                 onChange={this.handleChange}
               />
@@ -83,9 +95,7 @@ class Signup extends Component {
             >
               <label htmlFor={"lastName"}>
                 Last Name:
-                <small id={"lastName1"} class={"redSmallText hideDisplay"}>
-                  Input Missing
-                </small>
+                <small id={"lastName1"} className={"redSmallText"} />
               </label>
               <input
                 id={"lastName"}
@@ -100,10 +110,7 @@ class Signup extends Component {
               className={"d-flex flex-column inputContainer marginTopBottom"}
             >
               <label htmlFor={"email"}>
-                Email:{" "}
-                <small id={"email1"} class={"redSmallText hideDisplay"}>
-                  Input Missing
-                </small>
+                Email: <small id={"email1"} className={"redSmallText"} />
               </label>
               <input
                 id={"email"}
@@ -119,9 +126,7 @@ class Signup extends Component {
             >
               <label htmlFor={"password"}>
                 Password:
-                <small id={"password1"} class={"redSmallText hideDisplay"}>
-                  Input Missing
-                </small>
+                <small id={"password1"} className={"redSmallText"} />
               </label>
               <input
                 id={"password"}
@@ -137,9 +142,7 @@ class Signup extends Component {
             >
               <label htmlFor={"username"}>
                 Username:
-                <small id={"username1"} class={"redSmallText hideDisplay"}>
-                  Input Missing
-                </small>
+                <small id={"username1"} className={"redSmallText"} />
               </label>
               <input
                 id={"username"}
@@ -158,4 +161,4 @@ class Signup extends Component {
   }
 }
 
-export default Signup;
+export default Register;

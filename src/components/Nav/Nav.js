@@ -21,7 +21,7 @@ class Nav extends Component {
                   className={
                     "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
                   }
-                  to={"/signup"}
+                  to={"/register"}
                 >
                   Register
                 </NavLink>

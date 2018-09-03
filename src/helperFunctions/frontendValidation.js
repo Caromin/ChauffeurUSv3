@@ -4,6 +4,7 @@ const { check, validationResult } = require("express-validator/check");
 module.exports = {
   signupValidation: data => {
     var missingVar = [];
+    var emailValidation = "";
 
     $.each(data, function(index, value) {
       if (value === "") {
