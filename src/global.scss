@@ -5,6 +5,20 @@ body {
   padding-top: 50px;
 }
 
+.redBorder {
+  border: 1px solid red;
+}
+
+.redSmallText {
+  color: red;
+  font-size: 10px;
+  margin-left: 10px;
+}
+
+.hideDisplay {
+  display: none;
+}
+
 .marginTopBottom {
   margin: 10px 0;
 }

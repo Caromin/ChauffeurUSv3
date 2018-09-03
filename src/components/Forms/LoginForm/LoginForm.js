@@ -12,7 +12,7 @@ class Login extends Component {
     event.preventDefault();
     const data = event;
 
-    console.log("this is the data ", data);
+    console.log("this is the data ", event.target);
   }
 
   render() {
