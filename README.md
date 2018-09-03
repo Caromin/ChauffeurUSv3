@@ -1,5 +1,9 @@
 # ChauffeurUSGroupProjectv3
 
+Problems found that need to be resolved still:
+
+1. Link tags in react-router-dom are updating the url, but not the re-render.
+
 Ignored files:
 node_modules, dist (generates the webpack bundle.js)
 

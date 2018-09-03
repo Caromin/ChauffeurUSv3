@@ -14,16 +14,16 @@ class Nav extends Component {
           }
         >
           <a className={"navtitle navbar-brand marginLeftRight"}>ChauffeurUS</a>
-          <div className={"d-flex justify-content-end width80p"}>
+          <div className={"d-flex justify-content-end width100p"}>
             <ul className={"navbar-nav flex-row "}>
               <li className={"nav-item marginLeftRight"}>
                 <NavLink
                   className={
                     "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
                   }
-                  to="/signup"
+                  to={"/signup"}
                 >
-                  Signin
+                  Register
                 </NavLink>
               </li>
               <li className={"nav-item marginLeftRight"}>
@@ -31,9 +31,9 @@ class Nav extends Component {
                   className={
                     "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
                   }
-                  to="/login"
+                  to={"/login"}
                 >
-                  Register
+                  Login
                 </NavLink>
               </li>
             </ul>

@@ -2,11 +2,11 @@ $whiteColor: #fff;
 $defaultBold: 700;
 
 body {
-  padding-top: 65px;
+  padding-top: 50px;
 }
 
 .marginTopBottom {
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
 .marginLeftRight {
@@ -26,8 +26,8 @@ body {
   text-decoration: none;
 }
 
-.width80p {
-  width: 80%;
+.width100p {
+  width: 100%;
 }
 
 .activeButton {
@@ -37,4 +37,30 @@ body {
 
 .activeButton:active {
   background-color: black;
+}
+
+.formContainer {
+  height: 450px;
+  width: 400px;
+  background-color: lightgray;
+}
+
+.inputHalfContainer {
+  width: 48%;
+  margin-right: 2%;
+}
+
+.inputContainer {
+  width: 100%;
+}
+
+// iphone 6 to ipad screen size
+@media only screen and (min-width: 375px) and (max-width: 768px) {
+  .width100p {
+    width: 80%;
+  }
+}
+
+// only iphone 5 size
+@media only screen and (min-width: 329px) and (max-width: 374px) {
 }
