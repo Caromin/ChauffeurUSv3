@@ -6,9 +6,12 @@ const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const appConfig = require("./config.js");
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 // routes
 const indexRouter = require("./routes/index");
+const loginRouter = require("./routes/login");
 const usersRouter = require("./routes/users");
 const registerRouter = require("./routes/register");
 
@@ -37,8 +40,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "dist")));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use("/", indexRouter);
+app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/users", usersRouter);
 
