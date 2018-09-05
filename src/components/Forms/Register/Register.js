@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import api from "../../../helperFunctions/frontendValidation";
+import axios from "axios";
 
 import "./styles.scss";
 
@@ -23,6 +24,7 @@ class Register extends Component {
     e.preventDefault();
     let target = e.target.name;
     // console.log(`this is the current value for ${target}: ${e.target.value}`);
+    // [] brackets are needed to identify the state properly.
     this.setState({ [target]: e.target.value });
   }
 
@@ -37,26 +39,50 @@ class Register extends Component {
       password: this.state.password,
       username: this.state.username
     };
-
     let emailValidation = data.email.match(/.+@.+\.com$/);
 
-    if (emailValidation !== null) {
-      let emptyInputs = api.signupValidation(data);
-
-      $.each(emptyInputs, function(index, result) {
-        $(`#${result}`).addClass("redBorder animated bounceIn");
-        $(`#${result}1`)
-          .css("display", "inline")
-          .text("Input is required");
-        // $(".redSmallText").css("display", "inline");
-      });
-    } else {
+    if (emailValidation === null) {
       console.log("there was a problem with the email");
       $(`#email`).addClass("redBorder animated bounceIn");
       $(`#email1`)
         .css("display", "inline")
         .text("There was a probem with the email");
     }
+
+    let emptyInputs = api.signupValidation(data);
+    let arrLength = emptyInputs.length;
+
+    let inputValidate = new Promise(function(resolve, reject) {
+      if (arrLength > 0) {
+        $.each(emptyInputs, function(index, result) {
+          $(`#${result}`).addClass("redBorder animated bounceIn");
+          $(`#${result}1`)
+            .css("display", "inline")
+            .text("Input is required");
+          reject();
+        });
+      } else {
+        resolve();
+      }
+    });
+
+    inputValidate
+      .then(function() {
+        axios({
+          method: "post",
+          url: "/register/new",
+          data: data
+        })
+          .then(response => {
+            console.log(response);
+          })
+          .catch(response => {
+            console.log(JSON.stringify(response));
+          });
+      })
+      .catch(() => {
+        console.log("missing inputs");
+      });
   }
 
   render() {
