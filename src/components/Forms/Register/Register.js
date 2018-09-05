@@ -77,7 +77,7 @@ class Register extends Component {
             console.log(response);
           })
           .catch(response => {
-            console.log(JSON.stringify(response));
+            console.log(JSON.stringify(response.errors[0]));
           });
       })
       .catch(() => {

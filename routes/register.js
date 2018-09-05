@@ -39,9 +39,3 @@ router.post(
 );
 
 module.exports = router;
-
-// firstName: this.state.firstName,
-// lastName: this.state.lastName,
-// email: this.state.email,
-// password: this.state.password,
-// username: this.state.username

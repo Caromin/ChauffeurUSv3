@@ -4,12 +4,28 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
+const appConfig = require("./config.js");
 
+// routes
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const registerRouter = require("./routes/register");
 
+// models
+const User = require("./src/models/Users");
+
 const app = express();
+
+mongoose.connect(
+  appConfig.mongoServerCli,
+  {
+    useNewUrlParser: true
+  },
+  () => {
+    console.log("mongo has connected");
+  }
+);
 
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 // parse application/x-www-form-urlencoded
