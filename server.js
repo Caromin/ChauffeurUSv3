@@ -23,7 +23,7 @@ mongoose.connect(
     useNewUrlParser: true
   },
   () => {
-    console.log("mongo has connected");
+    console.log("Mongo has connected!");
   }
 );
 
