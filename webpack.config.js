@@ -1,11 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const CleanWebpackPlugin = require("clean-webpack-plugin");
+// const CleanWebpackPlugin = require("clean-webpack-plugin");
 const webpack = require("webpack");
 
+const mode = process.env.NODE_ENV;
+
 module.exports = {
-  mode: "development",
-  entry: ["webpack-hot-middleware/client", "./src/index.js"],
+  mode: mode,
+  entry: ["./src/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -38,10 +40,15 @@ module.exports = {
     noEmitOnErrors: true
   },
   plugins: [
-    // new CleanWebpackPlugin("./dist/*.js"),
     new HtmlWebpackPlugin({
       template: "./public/index.html"
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
 };
+
+// If not in production mode than will put thesee entry commands in unshift(front)
+// It will go to entry, if not it will not get put into entry
+if (process.env.NODE_ENV !== "production") {
+  module.exports.entry.unshift("webpack-hot-middleware/client");
+  module.exports.plugins.push(new webpack.HotModuleReplacementPlugin());
+}

@@ -37,4 +37,5 @@ class App extends Component {
   }
 }
 
+// wrapped hot reloading around main module
 export default hot(module)(App);

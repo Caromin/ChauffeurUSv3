@@ -43,7 +43,7 @@ router.post(
       });
 
       createUser.save().then(() => {
-        return res.status(200).send({ response: "User should be added" });
+        return res.status(200).send({ response: "User added" });
       });
     }
   }

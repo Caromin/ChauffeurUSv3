@@ -5,6 +5,7 @@ Problems found that need to be resolved still:
 1. Link tags in react-router-dom are updating the url, but not the re-render. (High Priority)
 2. Better validation checks before registering. (High Priority)
    a. More alerting to when there is an error on screen, nothing atm. It is catching the error though.
+3. Must disable hot module in app.js for production, I believe webpack is fine, but if manual refresh, webpack will rebundle and page will update even though it shouldnt. (Low Priority)
 
 Ignored files:
 node_modules, dist (generates the webpack bundle.js)

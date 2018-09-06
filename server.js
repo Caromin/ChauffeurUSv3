@@ -25,6 +25,8 @@ const User = require("./src/models/Users");
 
 const app = express();
 
+//mongo connection
+mongoose.set("useCreateIndex", true);
 mongoose.connect(
   appConfig.mongoServerCli,
   {
@@ -35,6 +37,7 @@ mongoose.connect(
   }
 );
 
+// hot-reloading middleware
 app.use(
   require("webpack-dev-middleware")(compiler, {
     noInfo: true,
@@ -42,7 +45,7 @@ app.use(
   })
 );
 app.use(require("webpack-hot-middleware")(compiler));
-
+// favicon image
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
