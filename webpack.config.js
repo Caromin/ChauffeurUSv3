@@ -1,9 +1,11 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const webpack = require("webpack");
 
 module.exports = {
-  entry: "./src/index.js",
+  mode: "development",
+  entry: ["webpack-hot-middleware/client", "./src/index.js"],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
@@ -32,10 +34,14 @@ module.exports = {
   devServer: {
     historyApiFallback: true
   },
+  optimization: {
+    noEmitOnErrors: true
+  },
   plugins: [
     // new CleanWebpackPlugin("./dist/*.js"),
     new HtmlWebpackPlugin({
       template: "./public/index.html"
-    })
+    }),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };

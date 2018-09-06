@@ -9,6 +9,11 @@ const appConfig = require("./config.js");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 
+// webpack reloader
+const webpack = require("webpack");
+const webpackConfig = require("./webpack.config");
+const compiler = webpack(webpackConfig);
+
 // routes
 const indexRouter = require("./routes/index");
 const loginRouter = require("./routes/login");
@@ -29,6 +34,14 @@ mongoose.connect(
     console.log("Mongo has connected!");
   }
 );
+
+app.use(
+  require("webpack-dev-middleware")(compiler, {
+    noInfo: true,
+    publicPath: webpackConfig.output.publicPath
+  })
+);
+app.use(require("webpack-hot-middleware")(compiler));
 
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 // parse application/x-www-form-urlencoded
