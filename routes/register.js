@@ -12,27 +12,23 @@ router.post(
   "/new",
   [
     check("firstName")
-      .trim()
-      .isLength({ min: 1 })
+      .isLength({ min: 2 })
       .matches(/^[a-zA-Z]+$/g),
     check("lastName")
-      .trim()
-      .isLength({ min: 1 })
+      .isLength({ min: 2 })
       .matches(/^[a-zA-Z]+$/g),
     check("email")
       .isEmail()
-      .isLength({ min: 5 })
-      .normalizeEmail({ all_lowercase: true }),
-    check("password").trim(),
+      .isLength({ min: 5 }),
+    check("password"),
     check("username")
-      .trim()
       .isLength({ min: 5 })
       .matches(/^[a-zA-Z0-9]+$/g)
   ],
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(422).send({ errors: errors.array() });
+      return res.status(422).json({ errors: errors.array() });
     } else {
       let createUser = new User({
         firstName: req.body.firstName,
@@ -42,8 +38,13 @@ router.post(
         username: req.body.username
       });
 
-      createUser.save().then(() => {
-        return res.status(200).send({ response: "User added" });
+      createUser.save(err => {
+        // console.log(err);
+        if (err) {
+          return res.status(200).send({ response: err });
+        } else {
+          return res.status(200).send({ response: "User added" });
+        }
       });
     }
   }

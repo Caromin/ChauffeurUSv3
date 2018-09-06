@@ -76,12 +76,18 @@ class Register extends Component {
           .then(response => {
             console.log(response);
           })
-          .catch(response => {
-            console.log(JSON.stringify(response.errors[0]));
+          .catch(errors => {
+            // This is the location of the express-validation errors
+            // console.log(JSON.stringify(errors.response.data.errors));
+            let results = errors.response.data.errors;
+
+            results.forEach(index => {
+              console.log(JSON.stringify(`Param: ${index.param}`));
+            });
           });
       })
-      .catch(() => {
-        console.log("missing inputs");
+      .catch(error => {
+        console.log("Error: " + error);
       });
   }
 

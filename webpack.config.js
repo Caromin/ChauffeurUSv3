@@ -33,9 +33,9 @@ module.exports = {
     ]
   },
   // // Use to avoid errors in dev server for react-router-dom
-  devServer: {
-    historyApiFallback: true
-  },
+  // devServer: {
+  //   historyApiFallback: true
+  // },
   optimization: {
     noEmitOnErrors: true
   },

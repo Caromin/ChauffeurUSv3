@@ -1,12 +1,13 @@
-const express = require("express");
-const path = require("path");
-const cookieParser = require("cookie-parser");
-const logger = require("morgan");
-const favicon = require("serve-favicon");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
 const appConfig = require("./config.js");
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const express = require("express");
+const favicon = require("serve-favicon");
+const logger = require("morgan");
+const mongoose = require("mongoose");
 const passport = require("passport");
+const path = require("path");
+const session = require("express-session");
 const LocalStrategy = require("passport-local").Strategy;
 
 // webpack reloader
@@ -17,8 +18,8 @@ const compiler = webpack(webpackConfig);
 // routes
 const indexRouter = require("./routes/index");
 const loginRouter = require("./routes/login");
-const usersRouter = require("./routes/users");
 const registerRouter = require("./routes/register");
+const usersRouter = require("./routes/users");
 
 // models
 const User = require("./src/models/Users");
@@ -26,7 +27,6 @@ const User = require("./src/models/Users");
 const app = express();
 
 //mongo connection
-mongoose.set("useCreateIndex", true);
 mongoose.connect(
   appConfig.mongoServerCli,
   {
@@ -47,13 +47,13 @@ app.use(
 app.use(require("webpack-hot-middleware")(compiler));
 // favicon image
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 app.use(logger("dev"));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "dist")));
 app.use(passport.initialize());
