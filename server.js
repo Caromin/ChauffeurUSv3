@@ -18,7 +18,7 @@ const compiler = webpack(webpackConfig);
 const indexRouter = require("./routes/index");
 const loginRouter = require("./routes/login");
 const registerRouter = require("./routes/register");
-const usersRouter = require("./routes/users");
+const profileRouter = require("./routes/profile.js");
 
 const app = express();
 
@@ -41,6 +41,18 @@ app.use(
   })
 );
 app.use(require("webpack-hot-middleware")(compiler));
+// session cookies
+app.use(
+  session({
+    secret: appConfig.sessionKey.secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      secure: false,
+      maxAge: 36000000
+    }
+  })
+);
 // favicon image
 app.use(favicon(path.join(__dirname, "public", "favicon.ico")));
 app.use(express.json());
@@ -58,6 +70,6 @@ app.use(passport.session());
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
-app.use("/users", usersRouter);
+app.use("/profile", profileRouter);
 
 module.exports = app;

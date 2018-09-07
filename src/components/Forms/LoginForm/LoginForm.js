@@ -34,7 +34,7 @@ class Login extends Component {
 
     axios({
       method: "POST",
-      url: "/users/login",
+      url: "/login/authenticate",
       data: data
     }).then(data => {
       console.log("Response from server: " + JSON.stringify(data));

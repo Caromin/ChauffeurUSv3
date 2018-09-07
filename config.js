@@ -6,3 +6,4 @@ const configPath = "./config.json";
 const parsed = JSON.parse(fs.readFileSync(configPath, "UTF-8"));
 
 exports.mongoServerCli = parsed.mongoServerCli;
+exports.sessionKey = parsed.sessionKey;

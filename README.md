@@ -2,13 +2,16 @@
 
 Problems found that need to be resolved still:
 
-1. Link tags in react-router-dom are updating the url, but not the re-render. (High Priority)
-2. Better validation checks before registering. (High Priority)
-   a. Found erros, need to redirect page when clicked, because sending weird errors after 2nd and maybe 3rd click after a good submit.
-   b. cant catch correct error for duplicate emails.
-   c. removing match in the checks removed the errors
-3. Must disable hot module in app.js for production, I believe webpack is fine, but if manual refresh, webpack will rebundle and page will update even though it shouldnt. (Low Priority)
-4. skipped schema methods for validation, not needed, but wasnt able to successfully get password from schema undefined (I think there was no password to get anyways, ill check later date)
+1. Link tags in react-router-dom are updating the url, but not the re-render.
+
+2) Better validation checks before registering.
+   a. match() need to be placed somewhere else, causing errors.
+
+3. Must disable hot module in app.js for production, I believe webpack is fine, but if manual refresh, webpack will rebundle and page will update even though it shouldnt.
+
+4. Skipped schema methods for validation, not needed, but wasnt able to successfully get password from schema undefined (I think there was no password to get anyways, I'll check at later date).
+
+5. nodemon in package.json cancels the component auto refresh, node allows it to update auto without manual refresh.
 
 Ignored files:
 node_modules, dist (generates the webpack bundle.js)

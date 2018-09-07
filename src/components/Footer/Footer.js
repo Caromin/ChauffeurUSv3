@@ -7,8 +7,8 @@ const Footer = () => {
     <div id={"footerBottom"} className="bg-dark">
       <div className="container text-muted">
         <span>
-          Status: In Development as a show for techincal expertise. Last Update:
-          9/4/18
+          Status: In Development as a show for techincal expertise. Estimated
+          Completion Date: 9/10/18
         </span>
         <br />
         <span>
