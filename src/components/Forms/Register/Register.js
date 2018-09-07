@@ -23,9 +23,10 @@ class Register extends Component {
   handleChange(e) {
     e.preventDefault();
     let target = e.target.name;
+    let value = e.target.value;
     // console.log(`this is the current value for ${target}: ${e.target.value}`);
     // [] brackets are needed to identify the state properly.
-    this.setState({ [target]: e.target.value });
+    this.setState({ [target]: value });
   }
 
   handleSubmit(e) {

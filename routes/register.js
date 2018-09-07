@@ -11,19 +11,13 @@ router.get("/", function(req, res, next) {
 router.post(
   "/new",
   [
-    check("firstName")
-      .isLength({ min: 2 })
-      .matches(/^[a-zA-Z]+$/g),
-    check("lastName")
-      .isLength({ min: 2 })
-      .matches(/^[a-zA-Z]+$/g),
+    check("firstName").isLength({ min: 2 }),
+    check("lastName").isLength({ min: 2 }),
     check("email")
       .isEmail()
       .isLength({ min: 5 }),
     check("password"),
-    check("username")
-      .isLength({ min: 5 })
-      .matches(/^[a-zA-Z0-9]+$/g)
+    check("username").isLength({ min: 5 })
   ],
   (req, res, next) => {
     const errors = validationResult(req);

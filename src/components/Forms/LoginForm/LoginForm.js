@@ -1,18 +1,44 @@
 import React, { Component } from "react";
 
 import "./styles.scss";
+import axios from "axios";
 
 class Login extends Component {
   constructor() {
     super();
+    this.state = {
+      email: "",
+      password: ""
+    };
+
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-    const data = event;
+  handleChange(e) {
+    e.preventDefault();
+    let target = e.target.name;
+    let value = e.target.value;
 
-    console.log("this is the data ", event.target);
+    this.setState({ [target]: value });
+    // console.log(`${this.state.email} ${this.state.password}`);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+
+    const data = {
+      email: this.state.email,
+      password: this.state.password
+    };
+
+    axios({
+      method: "POST",
+      url: "/users/authenticate",
+      data: data
+    }).then(data => {
+      console.log("Response from server: " + data.data.response);
+    });
   }
 
   render() {
@@ -29,12 +55,13 @@ class Login extends Component {
             <div
               className={"d-flex flex-column inputContainer marginTopBottom"}
             >
-              <label htmlFor={"username"}>Username:</label>
+              <label htmlFor={"email"}>Email:</label>
               <input
-                id={"username"}
-                name={"username"}
+                id={"email"}
+                name={"email"}
                 type={"text"}
-                placeholder={"HelloWorld123"}
+                placeholder={"HelloWorld@gmail.com"}
+                onChange={this.handleChange}
               />
             </div>
             <div
@@ -46,6 +73,7 @@ class Login extends Component {
                 name={"password"}
                 type={"text"}
                 placeholder={"Password123"}
+                onChange={this.handleChange}
               />
             </div>
             <button>Signin</button>
