@@ -8,7 +8,6 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const path = require("path");
 const session = require("express-session");
-const LocalStrategy = require("passport-local").Strategy;
 
 // webpack reloader
 const webpack = require("webpack");
@@ -20,9 +19,6 @@ const indexRouter = require("./routes/index");
 const loginRouter = require("./routes/login");
 const registerRouter = require("./routes/register");
 const usersRouter = require("./routes/users");
-
-// models
-const User = require("./src/models/Users");
 
 const app = express();
 

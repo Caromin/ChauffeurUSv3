@@ -28,16 +28,16 @@ class Login extends Component {
     e.preventDefault();
 
     const data = {
-      email: this.state.email,
-      password: this.state.password
+      email: this.state.email.trim(),
+      password: this.state.password.trim()
     };
 
     axios({
       method: "POST",
-      url: "/users/authenticate",
+      url: "/users/login",
       data: data
     }).then(data => {
-      console.log("Response from server: " + data.data.response);
+      console.log("Response from server: " + JSON.stringify(data));
     });
   }
 
