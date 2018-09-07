@@ -5,7 +5,6 @@ import { hot } from "react-hot-loader";
 import Nav from "./Nav/Nav";
 import Footer from "./Footer/Footer";
 import Homepage from "./Homepage/Homepage";
-import Userpage from "./Userpage/Userpage";
 import Error from "./Error/Error";
 import Login from "./Forms/LoginForm/LoginForm";
 import Register from "./Forms/Register/Register";
@@ -17,22 +16,16 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Router>
-          <div>
-            <Nav />
-            <Switch>
-              <Route exact path="/" component={Homepage} />
-              <Route path="/login" component={Login} />
-              <Route path="/logout" component={Login} />
-              <Route path="/register" component={Register} />
-              <Route path="/user" component={Userpage} />
-              <Route component={Error} />
-            </Switch>
-            <Footer />
-          </div>
-        </Router>
-      </div>
+      <Router>
+        <div>
+          <Nav />
+          <Route exact path="/" component={Homepage} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route component={Error} />
+          <Footer />
+        </div>
+      </Router>
     );
   }
 }

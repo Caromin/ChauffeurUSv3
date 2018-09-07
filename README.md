@@ -2,19 +2,28 @@
 
 Problems found that need to be resolved still:
 
-1. Link tags in react-router-dom are updating the url, but not the re-render.
+1. ~~Link tags in react-router-dom are updating the url, but not the re-render.~~ Solved.
 
-2) Better validation checks before registering.
-   a. match() need to be placed somewhere else, causing errors.
+   a. How, <Switch> was causing only one thing to render and blocking links,
 
-3. Must disable hot module in app.js for production, I believe webpack is fine, but if manual refresh, webpack will rebundle and page will update even though it shouldnt.
+Remaining Issues:
 
-4. Skipped schema methods for validation, not needed, but wasnt able to successfully get password from schema undefined (I think there was no password to get anyways, I'll check at later date).
+---
 
-5. nodemon in package.json cancels the component auto refresh, node allows it to update auto without manual refresh.
+-Better validation checks before registering.
+a. match() need to be placed somewhere else, causing errors.
+
+---
+
+Notes:
+
+..\*nodemon in package.json cancels the component auto refresh, node allows it to update auto without manual refresh.
+
+..\*Must disable hot module in app.js for production, I believe webpack is fine, but if manual refresh, webpack will rebundle and page will update even though it shouldnt.
 
 Ignored files:
-node_modules, dist (generates the webpack bundle.js)
+
+..\*node_modules, dist (generates the webpack bundle.js)
 
 **Homepage:**
 
@@ -23,3 +32,7 @@ node_modules, dist (generates the webpack bundle.js)
 **Register:**
 
 ![untitled](https://user-images.githubusercontent.com/12276056/45071156-ebad6500-b0a2-11e8-9a01-142d25df0d4a.png)
+
+**Register:**
+
+![untitled](https://user-images.githubusercontent.com/12276056/45217452-17cb1080-b272-11e8-9f00-a1689e4601cd.png)
