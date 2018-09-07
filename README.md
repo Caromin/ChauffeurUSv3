@@ -1,29 +1,35 @@
 # ChauffeurUSGroupProjectv3
 
+---
+
 Problems found that need to be resolved still:
 
 1. ~~Link tags in react-router-dom are updating the url, but not the re-render.~~ Solved.
 
-   a. How, <Switch> was causing only one thing to render and blocking links,
-
-Remaining Issues:
+   How: Switch Routing was causing only one component to render and blocking nav links.
 
 ---
 
--Better validation checks before registering.
-a. match() need to be placed somewhere else, causing errors.
+Remaining Issues:
+
+- Better validation checks before registering.
+- match() need to be placed somewhere else, causing errors.
 
 ---
 
 Notes:
 
-..\*nodemon in package.json cancels the component auto refresh, node allows it to update auto without manual refresh.
+- nodemon in package.json cancels the component auto refresh, node allows it to update auto without manual refresh.
 
-..\*Must disable hot module in app.js for production, I believe webpack is fine, but if manual refresh, webpack will rebundle and page will update even though it shouldnt.
+* Must disable hot module in app.js for production, I believe webpack is fine, but if manual refresh, webpack will rebundle and page will update even though it shouldnt.
+
+---
 
 Ignored files:
 
-..\*node_modules, dist (generates the webpack bundle.js)
+- node_modules, dist (generates the webpack bundle.js)
+
+---
 
 **Homepage:**
 
