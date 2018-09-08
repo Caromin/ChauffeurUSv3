@@ -1,7 +1,12 @@
+const bcrypt = require("bcrypt");
 const express = require("express");
-const router = express.Router();
 const path = require("path");
+const router = express.Router();
 const { check, validationResult } = require("express-validator/check");
+
+const saltRounds = 10;
+
+// models
 const User = require("../src/models/Users");
 
 router.get("/", function(req, res, next) {
@@ -24,21 +29,28 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(422).json({ errors: errors.array() });
     } else {
-      let createUser = new User({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password,
-        username: req.body.username
-      });
+      let preHashPassword = req.body.password;
 
-      createUser.save(err => {
-        // console.log(err);
-        if (err) {
-          return res.status(200).send({ response: err });
-        } else {
-          return res.status(200).send({ response: "User added" });
-        }
+      // hash is the encrypted password
+      bcrypt.hash(preHashPassword, saltRounds, function(err, hash) {
+        let postHashPassword = hash;
+
+        let createUser = new User({
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
+          email: req.body.email,
+          password: postHashPassword,
+          username: req.body.username
+        });
+
+        createUser.save(err => {
+          // console.log(err);
+          if (err) {
+            return res.status(200).send({ response: err });
+          } else {
+            return res.status(200).send({ response: "User added" });
+          }
+        });
       });
     }
   }

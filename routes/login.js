@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt");
 const express = require("express");
 const path = require("path");
 const passport = require("passport");
@@ -25,6 +26,13 @@ passport.deserializeUser((id, done) => {
   });
 });
 
+const comparePasswords = function(password, hash) {
+  return bcrypt.compare(password, hash).then(function(res) {
+    let test = res;
+    return test;
+  });
+};
+
 passport.use(
   new LocalStrategy(
     {
@@ -33,6 +41,8 @@ passport.use(
     },
     function(username, password, done) {
       User.findOne({ email: username }, function(err, user) {
+        let dbPassword = user.password;
+
         if (err) {
           console.log("error");
           return done(err);
@@ -40,14 +50,15 @@ passport.use(
         if (!user) {
           console.log("Invalid User");
           return done(null, false, { message: "Incorrect username." });
-        }
-        if (user.password !== password) {
-          console.log("Invalid Password");
-          return done(null, false);
         } else {
-          console.log("Authenticate Successful");
-          // when this is done, it will continue to passport.serializeUser
-          return done(null, user);
+          comparePasswords(password, dbPassword).then(results => {
+            if (!results) {
+              return done(null, false, { message: "Incorrect password." });
+            } else {
+              // when this is done, it will continue to passport.serializeUser
+              return done(null, user);
+            }
+          });
         }
       });
     }

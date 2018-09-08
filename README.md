@@ -14,6 +14,7 @@ Remaining Issues:
 
 - Better validation checks before registering.
 - match() need to be placed somewhere else, causing errors.
+- Need to update login to display errors when not successful.
 
 ---
 
