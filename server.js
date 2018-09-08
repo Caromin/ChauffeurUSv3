@@ -71,7 +71,7 @@ app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/profile", profileRouter);
 app.use("/", indexRouter);
-app.get("*", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname, "./dist/index.html"));
 });
 

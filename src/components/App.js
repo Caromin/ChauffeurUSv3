@@ -19,10 +19,12 @@ class App extends Component {
       <Router>
         <div>
           <Nav />
-          <Route exact path="/" component={Homepage} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route component={Error} />
+          <Switch>
+            <Route exact path="/" component={Homepage} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route component={Error} />
+          </Switch>
           <Footer />
         </div>
       </Router>
