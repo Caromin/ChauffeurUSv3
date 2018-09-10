@@ -1,14 +1,6 @@
 # ChauffeurUSGroupProjectv3
 
-(Finished, uninterested to making it a full website);
-
----
-
-Problems found that need to be resolved still:
-
-1. ~~Link tags in react-router-dom are updating the url, but not the re-render.~~ Solved.
-
-   How: Switch Routing was causing only one component to render and blocking nav links.
+(Finished-Discontinued, uninterested to making it a full website);
 
 ---
 
@@ -18,7 +10,11 @@ Remaining Issues:
 
 - Removed match() from validation check, need to be placed somewhere else, caused errors.
 
-- Need to update login to display errors when not successful.
+- Needed to update login to display errors when not successful.
+
+- Needed to update Navbar rerender once props were created.
+
+- Didn't add google maps cause didn't want to use google billing to get api key.
 
 ---
 
@@ -34,7 +30,7 @@ Notes:
 
 Ignored files:
 
-- node_modules, dist (generates the webpack bundle.js)
+- node_modules, dist (generates the webpack bundle.js), config.json (password container)
 
 ---
 
