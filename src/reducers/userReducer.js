@@ -11,7 +11,7 @@ export const initialState = {
 };
 
 export default function(state = initialState, action) {
-  console.log("reducer was hit");
+  // console.log("reducer was hit");
   switch (action.type) {
     case AUTH_USER:
       return {

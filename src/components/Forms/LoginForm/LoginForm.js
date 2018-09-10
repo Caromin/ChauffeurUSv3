@@ -8,10 +8,15 @@ import { authorizeUser } from "../../../actions/actions";
 import "./styles.scss";
 
 class Login extends Component {
+  // creating these states to update them when the data comes from db, but not auth because that is changed from redux.
   constructor(props) {
     super(props);
     this.state = {
-      email: "",
+      sessionId: "",
+      sessionFirstName: "",
+      sessionLastName: "",
+      sessionUsername: "",
+      sessionEmail: "",
       password: ""
     };
 
@@ -19,9 +24,9 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentWillMount() {
+  componentWillMount() {}
 
-  // }
+  componentDidUpdate(prevProps, prevState) {}
 
   handleChange(e) {
     e.preventDefault();
@@ -36,7 +41,7 @@ class Login extends Component {
     e.preventDefault();
 
     const data = {
-      email: this.state.email.trim(),
+      email: this.state.sessionEmail.trim(),
       password: this.state.password.trim()
     };
 
@@ -45,11 +50,19 @@ class Login extends Component {
       url: "/login/authenticate",
       data: data
     }).then(data => {
-      const result = JSON.stringify(data.data.response);
+      const result = data.data.response;
 
-      result
-        ? this.props.authorizeUser(true)
-        : console.log("action has failed");
+      for (var key in result) {
+        if (result.hasOwnProperty(key)) {
+          // console.log(key + " -> " + result[key]);
+
+          this.setState({ [key]: result[key] });
+          sessionStorage.setItem(key.toString(), result[key].toString());
+        }
+      }
+
+      sessionStorage.setItem("auth", "true");
+      this.props.authorizeUser(true);
     });
   }
 
@@ -67,10 +80,12 @@ class Login extends Component {
             <div
               className={"d-flex flex-column inputContainer marginTopBottom"}
             >
-              <label htmlFor={"email"}>Email:</label>
+              <label htmlFor={"email"}>
+                <p>Email:</p>
+              </label>
               <input
-                id={"email"}
-                name={"email"}
+                id={"sessionEmail"}
+                name={"sessionEmail"}
                 type={"text"}
                 placeholder={"HelloWorld@gmail.com"}
                 onChange={this.handleChange}
@@ -88,7 +103,7 @@ class Login extends Component {
                 onChange={this.handleChange}
               />
             </div>
-            <button>Signin</button>
+            <button>Login</button>
           </form>
         </div>
       </div>
@@ -100,7 +115,11 @@ Login.propTypes = {
   auth: PropTypes.func
 };
 
+const mapStateToProps = state => ({
+  userAuth: state.userInfo.auth
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   { authorizeUser }
 )(Login);

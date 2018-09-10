@@ -67,10 +67,16 @@ body {
 // iphone 6 to ipad screen size
 @media only screen and (min-width: 375px) and (max-width: 768px) {
   .width100p {
-    width: 80%;
+    width: 50%;
   }
 }
 
 // only iphone 5 size
-@media only screen and (min-width: 329px) and (max-width: 374px) {
+@media only screen and (min-width: 320px) and (max-width: 374px) {
+  .width100p {
+    width: 40%;
+  }
+  .marginLeftRight {
+    margin: 0 5px;
+  }
 }
