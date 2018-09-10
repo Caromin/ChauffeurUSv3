@@ -4,7 +4,7 @@ const path = require("path");
 
 /* GET users listing. */
 router.get("/", function(req, res, next) {
-  res.status(200).send({ response: "working fine" });
+  res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
 router.get("*", (req, res) => {

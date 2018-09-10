@@ -13,7 +13,9 @@ Problems found that need to be resolved still:
 Remaining Issues:
 
 - Better validation checks before registering.
+
 - match() need to be placed somewhere else, causing errors.
+
 - Need to update login to display errors when not successful.
 
 ---
@@ -23,6 +25,8 @@ Notes:
 - nodemon in package.json cancels the component auto refresh, node allows it to update auto without manual refresh.
 
 * Must disable hot module in app.js for production, I believe webpack is fine, but if manual refresh, webpack will rebundle and page will update even though it shouldnt.
+
+- Use render function to pass props into Router components.
 
 ---
 

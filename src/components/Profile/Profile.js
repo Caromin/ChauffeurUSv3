@@ -2,7 +2,7 @@ import React from "react";
 
 import "./styles.scss";
 
-const Userpage = () => {
+const Profile = () => {
   return (
     <div>
       <div>
@@ -13,4 +13,4 @@ const Userpage = () => {
   );
 };
 
-export default Userpage;
+export default Profile;

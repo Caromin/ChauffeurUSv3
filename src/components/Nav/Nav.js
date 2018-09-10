@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, NavLink, Route } from "react-router-dom";
 
-import Login from "../Forms/LoginForm/LoginForm";
-import Register from "../Forms/Register/Register";
-
 import "./styles.scss";
 
 class Nav extends Component {

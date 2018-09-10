@@ -1,11 +1,15 @@
-import React, { Component } from "react";
-
-import "./styles.scss";
 import axios from "axios";
+import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+import { authorizeUser } from "../../../actions/actions";
+import "./styles.scss";
 
 class Login extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       email: "",
       password: ""
@@ -14,6 +18,10 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  // componentWillMount() {
+
+  // }
 
   handleChange(e) {
     e.preventDefault();
@@ -37,7 +45,11 @@ class Login extends Component {
       url: "/login/authenticate",
       data: data
     }).then(data => {
-      console.log("Response from server: " + JSON.stringify(data));
+      const result = JSON.stringify(data.data.response);
+
+      result
+        ? this.props.authorizeUser(true)
+        : console.log("action has failed");
     });
   }
 
@@ -84,4 +96,11 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  auth: PropTypes.func
+};
+
+export default connect(
+  null,
+  { authorizeUser }
+)(Login);

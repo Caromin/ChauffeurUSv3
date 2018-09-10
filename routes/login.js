@@ -69,7 +69,15 @@ router.post(
   "/authenticate",
   passport.authenticate("local", {}),
   (req, res, next) => {
-    res.status(200).send({ response: true });
+    let data = {
+      sessionId: req.user.id,
+      sessionFirstName: req.user.firstName,
+      sessionLastName: req.user.lastName,
+      sessionEmail: req.user.email,
+      sessionUsername: req.user.username
+    };
+
+    res.status(200).send({ response: data });
   }
 );
 
