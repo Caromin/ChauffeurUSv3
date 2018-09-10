@@ -2,7 +2,7 @@
 
 # dependencies
 /node_modules
-dist/*
+# dist/*
 
 # testing
 /coverage
@@ -22,4 +22,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # Application configuration
-config.json
+# config.json

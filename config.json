@@ -1,0 +1,6 @@
+{
+  "mongoServerCli": "mongodb://caromin:Learning1@ds245772.mlab.com:45772/chauffeurusv3",
+  "sessionKey": {
+    "secret": "keyboard cat"
+  }
+}
