@@ -7,8 +7,8 @@ const Footer = () => {
     <div id={"footerBottom"} className="bg-dark">
       <div className="container text-muted">
         <span>
-          Status: In Development as a show for techincal expertise. Estimated
-          Completion Date: 9/10/18
+          Status: Decided to move on to next project, uninterested in finishing
+          this idea. Completion Date: 9/10/18
         </span>
         <br />
         <span>

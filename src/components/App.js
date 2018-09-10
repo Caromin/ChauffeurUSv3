@@ -6,6 +6,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { hot } from "react-hot-loader";
+import { connect } from "react-redux";
 
 // components
 import Nav from "./Nav/Nav";
@@ -18,6 +19,7 @@ import Register from "./Forms/Register/Register";
 
 class App extends Component {
   render() {
+    // console.log("testing in app class: " + this.props.userAuth);
     return (
       <Router>
         <div>
@@ -26,7 +28,16 @@ class App extends Component {
             <Route exact path="/" component={Homepage} />
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
-            <Route path="/profile" component={Profile} />
+            <Route
+              path="/profile"
+              render={() => {
+                if (this.props.userAuth) {
+                  return <Profile />;
+                } else {
+                  return <Redirect to={"/login"} />;
+                }
+              }}
+            />
             <Route component={Error} />
           </Switch>
           <Footer />
@@ -36,5 +47,9 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  userAuth: state.userInfo.auth
+});
+
 // wrapped hot reloading around main module
-export default hot(module)(App);
+export default connect(mapStateToProps)(hot(module)(App));

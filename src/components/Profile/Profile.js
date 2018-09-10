@@ -1,16 +1,29 @@
-import React from "react";
+import React, { Component } from "react";
+import GoogleMapReact from "google-map-react";
 
 import "./styles.scss";
 
-const Profile = () => {
-  return (
-    <div>
-      <div>
-        <h2>Welcome to ChauffeurUS</h2>
-        <p>This is the the userpage</p>
+class Profile extends Component {
+  static defaultProps = {
+    center: {
+      lat: 59.95,
+      lng: 30.33
+    },
+    zoom: 11
+  };
+
+  render() {
+    return (
+      // Important! Always set the container height explicitly
+      <div style={{ height: "100vh", width: "100%" }}>
+        <GoogleMapReact
+          bootstrapURLKeys={{ key: "" }}
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}
+        />
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default Profile;

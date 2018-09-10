@@ -1,5 +1,7 @@
 # ChauffeurUSGroupProjectv3
 
+(Finished, uninterested to making it a full website);
+
 ---
 
 Problems found that need to be resolved still:
@@ -14,7 +16,7 @@ Remaining Issues:
 
 - Better validation checks before registering.
 
-- match() need to be placed somewhere else, causing errors.
+- Removed match() from validation check, need to be placed somewhere else, caused errors.
 
 - Need to update login to display errors when not successful.
 
