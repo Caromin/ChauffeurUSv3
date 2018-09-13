@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { authorizeUser } from "../../../actions/actions";
+// import { authorizeUser } from "../../../actions/actions";
 import "./styles.scss";
 
 class Login extends Component {
@@ -12,10 +12,6 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sessionId: "",
-      sessionFirstName: "",
-      sessionLastName: "",
-      sessionUsername: "",
       sessionEmail: "",
       password: ""
     };
@@ -24,9 +20,7 @@ class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentWillMount() {}
-
-  componentDidUpdate(prevProps, prevState) {}
+  componentDidUpdate() {}
 
   handleChange(e) {
     e.preventDefault();
@@ -49,21 +43,14 @@ class Login extends Component {
       method: "POST",
       url: "/login/authenticate",
       data: data
-    }).then(data => {
-      const result = data.data.response;
-
-      for (var key in result) {
-        if (result.hasOwnProperty(key)) {
-          // console.log(key + " -> " + result[key]);
-
-          this.setState({ [key]: result[key] });
-          sessionStorage.setItem(key.toString(), result[key].toString());
-        }
-      }
-
-      sessionStorage.setItem("auth", "true");
-      this.props.authorizeUser(true);
-    });
+    })
+      .then(data => {
+        const results = data.data.response;
+        this.props.updateFunc(results);
+      })
+      .catch(() => {
+        console.log("There was an error");
+      });
   }
 
   render() {
@@ -111,15 +98,4 @@ class Login extends Component {
   }
 }
 
-Login.propTypes = {
-  auth: PropTypes.func
-};
-
-const mapStateToProps = state => ({
-  userAuth: state.userInfo.auth
-});
-
-export default connect(
-  mapStateToProps,
-  { authorizeUser }
-)(Login);
+export default connect()(Login);

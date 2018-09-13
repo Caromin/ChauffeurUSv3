@@ -17,25 +17,102 @@ import Error from "./Error/Error";
 import Login from "./Forms/LoginForm/LoginForm";
 import Register from "./Forms/Register/Register";
 
+// actions
+import { authorizeUser } from "../actions/actions";
+import { throws } from "assert";
+
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      userInfo: {
+        sessionId: "",
+        sessionFirstName: "",
+        sessionLastName: "",
+        sessionEmail: "",
+        sessionUsername: "",
+        auth: ""
+      }
+    };
+
+    this.updateState = this.updateState.bind(this);
+    this.signout = this.signout.bind(this);
+  }
+
+  componentWillMount() {
+    const sessionAuth = sessionStorage.getItem("auth");
+
+    if (sessionAuth === "true") {
+      this.props.authorizeUser(true);
+      console.log("session is true");
+    } else {
+      sessionStorage.clear();
+      console.log("session is false");
+    }
+  }
+
+  // componentDidUpdate() {
+  // }
+
+  updateState(foundResults) {
+    this.props.authorizeUser(true);
+    sessionStorage.setItem("auth", "true");
+    this.setState({
+      userInfo: Object.assign({}, this.state.userInfo, {
+        auth: true
+      })
+    });
+
+    for (var key in foundResults) {
+      if (foundResults.hasOwnProperty(key)) {
+        this.setState({
+          userInfo: Object.assign({}, this.state.userInfo, {
+            [key]: foundResults[key]
+          })
+        });
+        sessionStorage.setItem(key.toString(), foundResults[key].toString());
+      }
+    }
+  }
+
+  signout() {
+    this.props.authorizeUser(false);
+    sessionStorage.clear();
+    this.setState({
+      userInfo: Object.assign({}, this.state.userInfo, {
+        auth: false
+      })
+    });
+  }
+
   render() {
-    // console.log("testing in app class: " + this.props.userAuth);
+    const isLoggedIn = this.props.userAuth;
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav signout={this.signout} />
           <Switch>
             <Route exact path="/" component={Homepage} />
-            <Route path="/login" component={Login} />
+            <Route
+              path="/login"
+              render={() => {
+                return (
+                  <Login
+                    updateFunc={this.updateState}
+                    user={this.state.userInfo}
+                  />
+                );
+              }}
+            />
             <Route path="/register" component={Register} />
             <Route
               path="/profile"
               render={() => {
-                if (this.props.userAuth) {
-                  return <Profile />;
-                } else {
-                  return <Redirect to={"/login"} />;
-                }
+                return isLoggedIn === true ? (
+                  <Profile />
+                ) : (
+                  <Redirect to={"/login"} />
+                );
               }}
             />
             <Route component={Error} />
@@ -52,4 +129,7 @@ const mapStateToProps = state => ({
 });
 
 // wrapped hot reloading around main module
-export default connect(mapStateToProps)(hot(module)(App));
+export default connect(
+  mapStateToProps,
+  { authorizeUser }
+)(hot(module)(App));

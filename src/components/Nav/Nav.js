@@ -1,13 +1,25 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, NavLink, Route } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import { authorizeUser } from "../../actions/actions";
 import "./styles.scss";
 
+//actions
+import { authorizeUser } from "../../actions/actions";
+
 class Nav extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidUpdate() {
+    // console.log("this is the nav bar: " + this.props.auth);
+  }
+
   render() {
-    const isLoggedIn = this.props.auth;
+    const isLoggedIn = this.props.userAuth;
+
     return (
       <div>
         <nav
@@ -16,10 +28,12 @@ class Nav extends Component {
             "navbar navbar-expand-lg bg-dark flex-row noPadding fixed-top"
           }
         >
-          <a className={"navtitle navbar-brand marginLeftRight"}>ChauffeurUS</a>
+          <NavLink to={"/"} className={"navtitle navbar-brand marginLeftRight"}>
+            ChauffeurUS
+          </NavLink>
           <div className={"d-flex justify-content-end width100p"}>
             <ul className={"navbar-nav"}>
-              {isLoggedIn == "true" ? (
+              {isLoggedIn === true ? (
                 <div className={"d-flex flex-row "}>
                   <li className={"nav-item marginLeftRight"}>
                     <NavLink
@@ -27,11 +41,7 @@ class Nav extends Component {
                         "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
                       }
                       to={"/login"}
-                      onClick={() => {
-                        this.props.authorizeUser(false);
-                        sessionStorage.clear();
-                        sessionStorage.setItem("auth", "false");
-                      }}
+                      onClick={this.props.signout}
                     >
                       Logout
                     </NavLink>
@@ -44,7 +54,7 @@ class Nav extends Component {
                       }
                       to={"/profile"}
                     >
-                      User Profile
+                      Dashboard
                     </NavLink>
                   </li>
                 </div>
@@ -79,6 +89,10 @@ class Nav extends Component {
     );
   }
 }
+
+Nav.propTypes = {
+  authorizeUser: PropTypes.func
+};
 
 const mapStateToProps = state => ({
   userAuth: state.userInfo.auth

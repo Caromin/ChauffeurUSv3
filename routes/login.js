@@ -14,6 +14,11 @@ router.get("/", function(req, res, next) {
   res.sendFile(path.join(__dirname, "../dist/index.html"));
 });
 
+router.get("/failed", function(req, res, next) {
+  res.status(401).send();
+});
+
+// --------------------
 // this is run if the passport.use was successful
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -41,24 +46,29 @@ passport.use(
     },
     function(username, password, done) {
       User.findOne({ email: username }, function(err, user) {
-        let dbPassword = user.password;
-
-        if (err) {
-          console.log("error");
-          return done(err);
-        }
-        if (!user) {
-          console.log("Invalid User");
-          return done(null, false, { message: "Incorrect username." });
+        if (user === null) {
+          console.log("Email does not exist");
+          return done(null, false);
         } else {
-          comparePasswords(password, dbPassword).then(results => {
-            if (!results) {
-              return done(null, false, { message: "Incorrect password." });
-            } else {
-              // when this is done, it will continue to passport.serializeUser
-              return done(null, user);
-            }
-          });
+          let dbPassword = user.password;
+
+          if (err) {
+            console.log("error");
+            return done(err);
+          }
+          if (!user) {
+            console.log("Invalid User");
+            return done(null, false, { message: "Incorrect username." });
+          } else {
+            comparePasswords(password, dbPassword).then(results => {
+              if (!results) {
+                return done(null, false, { message: "Incorrect password." });
+              } else {
+                // when this is done, it will continue to passport.serializeUser
+                return done(null, user);
+              }
+            });
+          }
         }
       });
     }
@@ -67,7 +77,9 @@ passport.use(
 
 router.post(
   "/authenticate",
-  passport.authenticate("local", {}),
+  passport.authenticate("local", {
+    failureRedirect: "/login/failed"
+  }),
   (req, res, next) => {
     let data = {
       sessionId: req.user.id,
@@ -76,7 +88,6 @@ router.post(
       sessionEmail: req.user.email,
       sessionUsername: req.user.username
     };
-
     res.status(200).send({ response: data });
   }
 );
