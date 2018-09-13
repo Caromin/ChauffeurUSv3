@@ -18,7 +18,7 @@ import Login from "./Forms/LoginForm/LoginForm";
 import Register from "./Forms/Register/Register";
 
 // actions
-import { authorizeUser } from "../actions/actions";
+import { authorizeUser, saveUser } from "../actions/actions";
 
 class App extends Component {
   constructor() {
@@ -43,18 +43,22 @@ class App extends Component {
 
     if (sessionAuth === "true") {
       this.props.authorizeUser(true);
-      console.log("session is true");
+      let tempData = {
+        sessionId: sessionStorage.getItem("sessionId"),
+        sessionFirstName: sessionStorage.getItem("sessionFirstName"),
+        sessionLastName: sessionStorage.getItem("sessionLastName"),
+        sessionEmail: sessionStorage.getItem("sessionEmail"),
+        sessionUsername: sessionStorage.getItem("sessionUsername")
+      };
+      this.props.saveUser(tempData);
     } else {
       sessionStorage.clear();
-      console.log("session is false");
     }
   }
 
-  // componentDidUpdate() {
-  // }
-
   updateState(foundResults) {
     this.props.authorizeUser(true);
+    this.props.saveUser(foundResults);
     sessionStorage.setItem("auth", "true");
     this.setState({
       userInfo: Object.assign({}, this.state.userInfo, {
@@ -124,11 +128,16 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  userAuth: state.userInfo.auth
+  userAuth: state.userInfo.auth,
+  id: state.userInfo.userProfile.id,
+  firstName: state.userInfo.userProfile.firstName,
+  lastName: state.userInfo.userProfile.lastName,
+  email: state.userInfo.userProfile.email,
+  username: state.userInfo.userProfile.username
 });
 
 // wrapped hot reloading around main module
 export default connect(
   mapStateToProps,
-  { authorizeUser }
+  { authorizeUser, saveUser }
 )(hot(module)(App));

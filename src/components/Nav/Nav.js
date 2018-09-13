@@ -68,9 +68,9 @@ class Nav extends Component {
                       className={
                         "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
                       }
-                      to={"/register"}
+                      to={"/login"}
                     >
-                      Register
+                      Login
                     </NavLink>
                   </li>
                   <li className={"nav-item marginLeftRight"}>
@@ -78,9 +78,9 @@ class Nav extends Component {
                       className={
                         "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
                       }
-                      to={"/login"}
+                      to={"/register"}
                     >
-                      Login
+                      Register
                     </NavLink>
                   </li>
                 </div>

@@ -45,6 +45,10 @@ body {
   text-align: center;
 }
 
+.activeButton:focus {
+  background: black;
+}
+
 .formContainer {
   height: 450px;
   width: 400px;
