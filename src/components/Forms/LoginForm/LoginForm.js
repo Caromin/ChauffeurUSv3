@@ -4,7 +4,6 @@ import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-// import { authorizeUser } from "../../../actions/actions";
 import "./styles.scss";
 
 class Login extends Component {
@@ -54,7 +53,10 @@ class Login extends Component {
   }
 
   render() {
-    return (
+    const isLoggedIn = this.props.userAuth;
+    return isLoggedIn ? (
+      <Redirect to="/profile" />
+    ) : (
       <div
         id={"SignupBg"}
         className={"fullPage d-flex justify-content-center align-items-center"}
@@ -98,4 +100,8 @@ class Login extends Component {
   }
 }
 
-export default connect()(Login);
+const mapStateToProps = state => ({
+  userAuth: state.userInfo.auth
+});
+
+export default connect(mapStateToProps)(Login);
