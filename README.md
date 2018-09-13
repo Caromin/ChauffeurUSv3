@@ -1,16 +1,12 @@
 # ChauffeurUSGroupProjectv3
 
-(Finished, uninterested to making it a full website);
+(Finished. The idea is flawed, no point in going more in depth to flush out minor and time consuming additions, for project);
 
 ---
 
 Remaining Issues:
 
-- Better validation checks before registering.
-
-- Removed match() from validation check, need to be placed somewhere else, caused errors.
-
-- Needed to update login to display errors when not successful.
+- Better validation checks and alerts before registering.
 
 ---
 

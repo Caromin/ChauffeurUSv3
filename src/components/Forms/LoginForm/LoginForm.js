@@ -12,14 +12,16 @@ class Login extends Component {
     super(props);
     this.state = {
       sessionEmail: "",
-      password: ""
+      password: "",
+      logginError: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidUpdate() {}
+  // componentWillUpdate() {
+  // }
 
   handleChange(e) {
     e.preventDefault();
@@ -48,12 +50,13 @@ class Login extends Component {
         this.props.updateFunc(results);
       })
       .catch(() => {
-        console.log("There was an error");
+        this.setState({ logginError: true });
       });
   }
 
   render() {
     const isLoggedIn = this.props.userAuth;
+    const logginError = this.state.logginError;
     return isLoggedIn ? (
       <Redirect to="/profile" />
     ) : (
@@ -62,6 +65,11 @@ class Login extends Component {
         className={"fullPage d-flex justify-content-center align-items-center"}
       >
         <div className={"formContainer"}>
+          {logginError ? (
+            <div className={"alert alert-danger"}>
+              <strong>Error!</strong> email and/or password were incorrect.
+            </div>
+          ) : null}
           <form
             className={"container d-flex flex-wrap"}
             onSubmit={this.handleSubmit}

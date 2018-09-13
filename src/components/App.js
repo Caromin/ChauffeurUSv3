@@ -19,7 +19,6 @@ import Register from "./Forms/Register/Register";
 
 // actions
 import { authorizeUser } from "../actions/actions";
-import { throws } from "assert";
 
 class App extends Component {
   constructor() {

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -41,7 +41,10 @@ class Nav extends Component {
                         "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
                       }
                       to={"/login"}
-                      onClick={this.props.signout}
+                      onClick={() => {
+                        this.props.signout();
+                        <Redirect to={"/"} />;
+                      }}
                     >
                       Logout
                     </NavLink>
