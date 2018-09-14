@@ -1,6 +1,5 @@
 import axios from "axios";
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -19,9 +18,6 @@ class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  // componentWillUpdate() {
-  // }
 
   handleChange(e) {
     e.preventDefault();
@@ -62,9 +58,6 @@ class Login extends Component {
     // this is a redux prop
     const id = this.props.id;
 
-    // isLoggedIn ? (
-    //   <Redirect to={`/profile/${id}`} />
-    // ) :
     return (
       <div
         id={"SignupBg"}

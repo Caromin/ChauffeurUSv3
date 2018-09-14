@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import GoogleMapReact from "google-map-react";
-import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
 import "./styles.scss";
@@ -16,17 +15,6 @@ class Profile extends Component {
     },
     zoom: 11
   };
-
-  // Meow() {
-  //   const { match } = this.props;
-  //   console.log("match url: " + match.params.id);
-  //   console.log("match redux: " + this.props.id);
-  //   return this.props.id === match.params.id ? (
-  //     console.log("they match!")
-  //   ) : (
-  //     <Redirect to={"/login"} />
-  //   );
-  // }
 
   render() {
     const { firstName, lastName } = this.props;

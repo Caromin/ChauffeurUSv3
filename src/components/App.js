@@ -90,6 +90,7 @@ class App extends Component {
 
   render() {
     const isLoggedIn = this.props.userAuth;
+    const id = this.props.id;
     return (
       <Router>
         <div>
@@ -110,8 +111,12 @@ class App extends Component {
             <Route path="/register" component={Register} />
             <Route
               path="/profile/:id"
-              render={props => {
-                return isLoggedIn ? <Profile /> : <Redirect to={"/login"} />;
+              render={({ match, props }) => {
+                return id === match.params.id ? (
+                  <Profile {...props} />
+                ) : (
+                  <Error />
+                );
               }}
             />
             <Route component={Error} />

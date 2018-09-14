@@ -6,12 +6,13 @@ const Footer = () => {
   return (
     <div id={"footerBottom"} className="bg-dark">
       <div className="container text-muted">
-        <span>
-          Status: Decided to move on to next project, uninterested in finishing
-          this idea. Completion Date: 9/10/18
-        </span>
+        <small>
+          Status: Finished(Lost Interest) Didn't add more login validation and
+          database interaction. Profile Page Under developed. Last Updated:
+          9/14/18
+        </small>
         <br />
-        <span>
+        <small>
           Follow the progress via{" "}
           <a
             className={"noUnderline"}
@@ -20,7 +21,7 @@ const Footer = () => {
           >
             Github
           </a>
-        </span>
+        </small>
       </div>
     </div>
   );

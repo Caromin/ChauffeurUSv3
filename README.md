@@ -8,6 +8,8 @@ Remaining Issues:
 
 - Better validation checks and alerts before registering.
 
+* More fleshed out profile page all around.
+
 ---
 
 **Homepage:**
@@ -21,3 +23,11 @@ Remaining Issues:
 **Register:**
 
 ![untitled](https://user-images.githubusercontent.com/12276056/45217452-17cb1080-b272-11e8-9f00-a1689e4601cd.png)
+
+**Profile:**
+
+![untitled](https://user-images.githubusercontent.com/12276056/45548963-19598300-b7f4-11e8-87ee-41463d2ebb65.png)
+
+**404:**
+
+![untitled](https://user-images.githubusercontent.com/12276056/45549035-558ce380-b7f4-11e8-8306-114a757fa114.png)
