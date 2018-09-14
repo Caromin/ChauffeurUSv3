@@ -55,7 +55,7 @@ class Nav extends Component {
                       className={
                         "textWhite noUnderline activeButton d-flex align-items-center justify-content-center h-100"
                       }
-                      to={"/profile"}
+                      to={`/profile/${this.props.id}`}
                     >
                       Dashboard
                     </NavLink>
@@ -98,7 +98,8 @@ Nav.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userAuth: state.userInfo.auth
+  userAuth: state.userInfo.auth,
+  id: state.userInfo.userProfile.id
 });
 
 export default connect(

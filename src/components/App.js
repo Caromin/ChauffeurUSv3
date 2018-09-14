@@ -109,13 +109,9 @@ class App extends Component {
             />
             <Route path="/register" component={Register} />
             <Route
-              path="/profile"
-              render={() => {
-                return isLoggedIn === true ? (
-                  <Profile />
-                ) : (
-                  <Redirect to={"/login"} />
-                );
+              path="/profile/:id"
+              render={props => {
+                return isLoggedIn ? <Profile /> : <Redirect to={"/login"} />;
               }}
             />
             <Route component={Error} />

@@ -55,11 +55,17 @@ class Login extends Component {
   }
 
   render() {
+    // this is a pass down from parent
     const isLoggedIn = this.props.userAuth;
+    // this is a local state
     const logginError = this.state.logginError;
-    return isLoggedIn ? (
-      <Redirect to="/profile" />
-    ) : (
+    // this is a redux prop
+    const id = this.props.id;
+
+    // isLoggedIn ? (
+    //   <Redirect to={`/profile/${id}`} />
+    // ) :
+    return (
       <div
         id={"SignupBg"}
         className={"fullPage d-flex justify-content-center align-items-center"}
@@ -109,7 +115,8 @@ class Login extends Component {
 }
 
 const mapStateToProps = state => ({
-  userAuth: state.userInfo.auth
+  userAuth: state.userInfo.auth,
+  id: state.userInfo.userProfile.id
 });
 
 export default connect(mapStateToProps)(Login);
