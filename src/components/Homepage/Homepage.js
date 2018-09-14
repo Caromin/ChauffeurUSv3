@@ -15,7 +15,7 @@ const Homepage = () => {
         </div>
       </div>
       <div id={"bannerImg"} className={"jumbotron"} />
-      <div className={"d-flex justify-content-sm-center"}>
+      <div className={"d-flex flex-wrap justify-content-sm-center"}>
         <div className={"max300px marginLeftRight"}>
           <img src={require("../../../public/images/col1.jpg")} />
           <br />

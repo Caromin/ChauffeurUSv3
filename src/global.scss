@@ -2,7 +2,7 @@ $whiteColor: #fff;
 $defaultBold: 700;
 
 body {
-  padding-top: 50px;
+  padding: 75px 0;
 }
 
 .redBorder {
@@ -65,18 +65,18 @@ body {
 }
 
 // iphone 6 to ipad screen size
-@media only screen and (min-width: 375px) and (max-width: 768px) {
+@media only screen and (min-width: 415px) and (max-width: 768px) {
   .width100p {
     width: 50%;
   }
 }
 
 // only iphone 5 size
-@media only screen and (min-width: 320px) and (max-width: 374px) {
+@media only screen and (max-width: 414px) {
   .width100p {
     width: 40%;
   }
   .marginLeftRight {
-    margin: 0 5px;
+    margin: 0;
   }
 }
